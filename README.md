@@ -30,13 +30,14 @@ The Ease Inventory Tracker is built using the Flask web framework and SQLite dat
 
 The project structure is organized as follows:
 
-- `app.py`: The main Flask application file containing the routes and logic.
-- `db_setup.py`: Script to create the SQLite database file (`inventory.db`) and set up the SQL schema for the app.
-- `static/`: Directory containing static files (CSS, JS).
-- `templates/`: Directory containing HTML templates.
-- `/static/styles/`: Directory containing CSS files.
-- `/static/scripts/`: Directory containing JavaScript files.
-- `README.md`: Comprehensive documentation for the project.
+- [`eit_app.py`](./eit_app.py): The main Flask application file containing the routes and logic.
+- [`db_setup.py`](./db_setup.py): Script to create the SQLite database file (`inventory.db`) and set up the SQL schema for the app.
+- [`db_methods.py`](./db_methods.py): This module contains all the methods used to interact with the database to manipulate user information.
+- [`static/`](./static/): Directory containing static files (CSS, JS).
+- [`templates/`](./templates/): Directory containing HTML templates.
+- [`static/styles/`](./static/styles/): Directory containing CSS files.
+- [`static/scripts/`](./static/scripts/): Directory containing JavaScript files.
+- [`README.md`](./README.md): Comprehensive documentation for the project.
 
 ---
 
@@ -69,7 +70,7 @@ Follow the steps below to set up the Ease Inventory Tracker on your local machin
 To run the Ease Inventory Tracker application, execute the following command:
 
 ```bash
-python3 app.py
+python3 eit_app.py
 ```
 
 Access the application in your web browser at `http://localhost:5000`.
