@@ -167,8 +167,7 @@ def add_material_to_db(user_id, material_name, quantity, price):
                   .format(material_name))
             return False
         else:
-            # If the material doesn't exist, insert a new recor
-            print("line 115")
+            # If the material doesn't exist, insert a new record
             c.execute("INSERT INTO materials (user_id, material_name, quantity, price) VALUES (?, ?, ?, ?)",
                       (user_id, material_name, quantity, price))
             print("Material added successfully")
@@ -176,7 +175,6 @@ def add_material_to_db(user_id, material_name, quantity, price):
         print("Material added successfully")
         return True
     except sqlite3.Error as e:
-        print("line 122")
         print(e)
         return False
 
