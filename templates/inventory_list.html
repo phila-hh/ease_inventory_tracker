@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Meta tags for character set and responsive design -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Title for the HTML document -->
+		<title>Ease Inventory Tracker</title>
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+		<!-- Stylesheet for the page, using Flask's url_for for dynamic paths -->
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/inventory_list.css') }}?{{ cache_id }}" />
+	</head>
+	<body>
+		<!-- Navigation bar using Bootstrap -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">Ease Inventory Tracker</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<!-- Navigation links with Flask's url_for for dynamic paths -->
+					<li class="nav-item active">
+						<a class="nav-link" href="{{ url_for('add_material') }}">Add Material<span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/logout">Log out</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- Main content section of the page -->
+		<section>
+			<!-- Displaying the username -->
+			<h1>{{ username }}</h1>
+
+			<!-- Table header for material information -->
+			<div class="tbl-header">
+				<table cellpadding="0" cellspacing="0" border="0">
+					<thead>
+						<tr>
+							<th>Material</th>
+							<th>Quantity</th>
+							<th>Unit Price</th>
+							<th>Total Price</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+
+			<!-- Table content for displaying material information -->
+			<div class="tbl-content">
+				<table cellpadding="1" cellspacing="1" border="1">
+					<tbody>
+						<!-- Loop through the info dictionary to display material details -->
+						{% for material_name, material_info in info.items() %}
+						<tr>
+							<!-- Link to edit each material with Flask's url_for -->
+							<td><a href="{{ url_for('edit_material', material_id=material_info.id) }}">{{ material_name }}</a></td>
+							<td>{{ material_info.quantity }}</td>
+							<td>{{ material_info.price }}</td>
+							<td>{{ material_info.total }}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</section>
+
+		<!-- JavaScript dependencies: jQuery, Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+		<!-- Include the external JavaScript file for custom scripts -->
+		<script src="{{ url_for('static', filename='scripts/inventory_list.js') }}?{{ cache_id }}"></script>
+	</body>
+</html>

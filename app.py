@@ -6,7 +6,6 @@ with user authentication.
 
 Dependencies:
 - Flask
-- SQLite (for the database)
 - db_methods module (contains database methods)
 
 To run the application:
@@ -48,12 +47,18 @@ def close_connection(exception):
 # Index route to render the login page
 @app.route('/')
 def index():
+    """
+    Renders the login page.
+    """
     return render_template('login.html', value=None)
 
 
 # Login route for handling user login
 @app.route('/login', methods=['POST', 'GET'])
 def login():
+    """
+    Handles user login.
+    """
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -72,24 +77,31 @@ def login():
 # Signup route for handling user registration
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
+    """
+    Handles user registration.
+    """
     if request.method == 'POST':
         username = request.form['username']
         email = request.form['email']
         password = request.form['password']
 
+        # Check if username or email already exists
         if check_existing_user(username, email):
             flash('Username or email already exists. Please choose another.',
                   'error')
             return render_template('signup.html', value=True)
 
+        # Register new user
         registered = register_user(username, email, password)
 
         if registered:
+            # Get user_id from your database
             user_id = login_user(username, password)
 
             if user_id is not None:
                 session['user_id'] = user_id
                 flash('Account created successfully!', 'success')
+                # Redirect to a dashboard or home page
                 return redirect('/dashboard')
             else:
                 flash('Error during login. Please try again.', 'error')
@@ -97,19 +109,26 @@ def signup():
         else:
             flash('Error during registration. Please try again.', 'error')
             return render_template('signup.html', value=True)
+    # If the request method is not POST, render the signup page
     return render_template('signup.html')
 
 
 # Route to handle adding materials
 @app.route('/add_material', methods=['GET', 'POST'])
 def add_material():
+    """
+    Handles adding materials to the inventory.
+    """
     if request.method == 'POST':
+        # Get form data
         material_name = request.form['material_name']
         quantity = int(request.form['quantity'])
         price = float(request.form['price'])
 
+        # Get user_id from the session (assuming user is logged in)
         user_id = session.get('user_id')
 
+        # Add material to the database
         added_successfully = add_material_to_db(user_id, material_name,
                                                 quantity, price)
 
@@ -119,19 +138,27 @@ def add_material():
         else:
             flash('Error adding material. Please try again.', 'error')
 
+    # If the request method is not POST or material addition fails,
+    # render the add_material page
     return render_template('add_material.html')
 
 
 # Route to handle editing materials
 @app.route('/edit_material/<int:material_id>', methods=['GET', 'POST'])
 def edit_material(material_id):
+    """
+    Handles editing materials in the inventory.
+    """
+    # Fetch material info based on material_id
     material_info = fetch_material_info(material_id)
 
     if request.method == 'POST':
+        # Handle the form submission to update material info
         updated_name = request.form['material_name']
         updated_quantity = int(request.form['quantity'])
         updated_price = float(request.form['price'])
 
+        # Update material info in the database
         update_material_info(material_id, updated_name,
                              updated_quantity, updated_price)
 
@@ -144,22 +171,31 @@ def edit_material(material_id):
 # Dashboard route to render the user dashboard
 @app.route('/dashboard')
 def dashboard():
+    """
+    Renders the user dashboard.
+    """
     if 'user_id' in session:
         user_id = session['user_id']
+        # Fetch user-specific data from the database
         info = get_all_data(user_id)
         username = fetch_username(user_id)
+        # Render the dashboard template with user-specific data
         return render_template('inventory_list.html', info=info,
                                username=username)
     else:
-        return redirect('/')
+        return redirect('/')  # Redirect to the login page if not logged in
 
 
-# Logout route to handle user loging out
+# Logout route to handle user logout
 @app.route('/logout')
 def logout():
+    """
+    Logs the user out and redirects to the login page.
+    """
     session.pop('user_id', None)
-    return redirect('/')
+    return redirect('/')  # Redirect to the login page after logout
 
 
 if __name__ == "__main__":
+    """ Main Function """
     app.run(host='0.0.0.0', port=5000, debug=True)

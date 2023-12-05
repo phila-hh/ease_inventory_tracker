@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Meta tags for character set and responsive design -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Title for the HTML document -->
+		<title>Ease Inventory Tracker</title>
+
+		<!-- Stylesheets for the page, using Flask's url_for for dynamic paths -->
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/login_1.css') }}?{{ cache_id }}" />
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/login.css') }}?{{ cache_id }}" />
+	</head>
+	<body>
+		<!-- Header section with the title of the application -->
+		<header>
+			<h1 class="title">
+				Ease Inventory Tracker
+			</h1>
+		</header>
+
+		<!-- Main content section of the page -->
+		<section>
+			<!-- Container for the login form -->
+			<div class="b-container" id="b-container">
+				<!-- Login form with a method of post and action pointing to the login route -->
+				<form class="form" id="b-form" method="post" action="{{ url_for('login') }}">
+					<!-- Form title, currently empty but can be customized -->
+					<h2 class="form_title title"></h2>
+					<!-- Input fields for username and password -->
+					<input class="form__input" type="text" placeholder="Username" name="username">
+					<input class="form__input" type="password" placeholder="Password" name="password">
+
+					<!-- Display flashed messages, if any -->
+					{% with messages = get_flashed_messages() %}
+					{% if messages %}
+					<ul class="flashes">
+						{% for message in messages %}
+						<li>{{ message }}</li>
+						{% endfor %}
+					</ul>
+					{% endif %}
+					{% endwith %}
+
+					<!-- Link to redirect to the signup page -->
+					<a class="redi_link" href="{{ url_for('signup') }}">Create an account</a>
+					<!-- Submit button for the form -->
+					<button class="form__button button submit">SIGN IN</button>
+				</form>
+			</div>
+		</section>
+	</body>
+</html>
