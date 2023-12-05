@@ -37,6 +37,7 @@ The project structure is organized as follows:
 - [`templates/`](./templates/): Directory containing HTML templates.
 - [`static/styles/`](./static/styles/): Directory containing CSS files.
 - [`static/scripts/`](./static/scripts/): Directory containing JavaScript files.
+- [`requirements.txt`](./requirements.txt): Contains all the dependancies required to run the web app.
 - [`README.md`](./README.md): Comprehensive documentation for the project.
 
 ---
