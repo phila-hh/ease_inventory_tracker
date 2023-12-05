@@ -120,8 +120,8 @@ def register_user(username, email, password):
         db = get_db()
         c = db.cursor()
         hashed_password = hashlib.sha256(password.encode()).hexdigest()
-        c.execute("INSERT INTO users (username, email, password)
-                  VALUES (?, ?, ?)", (username, email, hashed_password))
+        c.execute("INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
+                  (username, email, hashed_password))
         db.commit()
         print("User registered successfully")
         return True
@@ -156,8 +156,8 @@ def add_material_to_db(user_id, material_name, quantity, price):
         db = get_db()
         c = db.cursor()
         # Check if the material already exists for the user
-        c.execute("SELECT * FROM materials WHERE user_id=? AND
-                  material_name=?", (user_id, material_name))
+        c.execute("SELECT * FROM materials WHERE user_id=? AND material_name=?",
+                  (user_id, material_name))
         existing_material = c.fetchone()
 
         if existing_material:
@@ -169,8 +169,7 @@ def add_material_to_db(user_id, material_name, quantity, price):
         else:
             # If the material doesn't exist, insert a new recor
             print("line 115")
-            c.execute("INSERT INTO materials (user_id, material_name,
-                      quantity, price) VALUES (?, ?, ?, ?)",
+            c.execute("INSERT INTO materials (user_id, material_name, quantity, price) VALUES (?, ?, ?, ?)",
                       (user_id, material_name, quantity, price))
             print("Material added successfully")
         db.commit()
@@ -202,8 +201,8 @@ def update_material_price(user_id, material_name, new_price):
     try:
         db = get_db()
         c = db.cursor()
-        c.execute("UPDATE materials SET price=? WHERE user_id=? AND
-                  material_name=?", (new_price, user_id, material_name))
+        c.execute("UPDATE materials SET price=? WHERE user_id=? AND material_name=?",
+                  (new_price, user_id, material_name))
         db.commit()
         print("Material price updated successfully")
         return True
@@ -217,8 +216,8 @@ def update_material_quantity(user_id, material_name, new_quantity):
     try:
         db = get_db()
         c = db.cursor()
-        c.execute("UPDATE materials SET quantity=? WHERE user_id=? AND
-                  material_name=?", (new_quantity, user_id, material_name))
+        c.execute("UPDATE materials SET quantity=? WHERE user_id=? AND material_name=?",
+                  (new_quantity, user_id, material_name))
         db.commit()
         print("Material quantity updated successfully")
         return True
@@ -232,8 +231,8 @@ def update_material_name2(user_id, material_name, new_name):
     try:
         db = get_db()
         c = db.cursor()
-        c.execute("UPDATE materials SET material_name=? WHERE user_id=? AND
-                  material_name=?", (new_name, user_id, material_name))
+        c.execute("UPDATE materials SET material_name=? WHERE user_id=? AND material_name=?",
+                  (new_name, user_id, material_name))
         db.commit()
         print("Material name updated successfully")
         return True
@@ -262,8 +261,8 @@ def fetch_price(user_id, material_name):
     try:
         db = get_db()
         c = db.cursor()
-        c.execute("SELECT price FROM materials WHERE user_id=? AND
-                  material_name=?", (user_id, material_name))
+        c.execute("SELECT price FROM materials WHERE user_id=? AND material_name=?",
+                  (user_id, material_name))
         price = c.fetchone()
         return price[0]
     except sqlite3.Error as e:
@@ -276,8 +275,8 @@ def fetch_quantity(user_id, material_name):
     try:
         db = get_db()
         c = db.cursor()
-        c.execute("SELECT quantity FROM materials WHERE user_id=? AND
-                  material_name=?", (user_id, material_name))
+        c.execute("SELECT quantity FROM materials WHERE user_id=? AND material_name=?",
+                  (user_id, material_name))
         quantity = c.fetchone()
         return quantity[0]
     except sqlite3.Error as e:
@@ -303,8 +302,8 @@ def fetch_material_id(user_id, material_name):
     try:
         db = get_db()
         c = db.cursor()
-        c.execute("SELECT id FROM materials WHERE user_id=? AND
-                  material_name=?", (user_id, material_name))
+        c.execute("SELECT id FROM materials WHERE user_id=? AND material_name=?",
+                  (user_id, material_name))
         material_id = c.fetchone()
         return material_id[0] if material_id else None
     except sqlite3.Error as e:
@@ -337,14 +336,12 @@ def fetch_material_info(material_id):
 
 
 # Function to update material information in the database
-def update_material_info(material_id, updated_name,
-                         updated_quantity, updated_price):
+def update_material_info(material_id, updated_name, updated_quantity, updated_price):
     try:
         db = get_db()
         c = db.cursor()
-        c.execute("UPDATE materials SET material_name=?, quantity=?,
-                  price=? WHERE id=?", (updated_name, updated_quantity,
-                                        updated_price, material_id))
+        c.execute("UPDATE materials SET material_name=?, quantity=?, price=? WHERE id=?",
+                  (updated_name, updated_quantity, updated_price, material_id))
         db.commit()
         print("Material info updated successfully")
         return True
