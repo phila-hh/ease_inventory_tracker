@@ -9,8 +9,6 @@ import os
 def create_database():
     try:
         db = sqlite3.connect("inventory.db")
-        with open('schema.sql', 'r') as f:
-            db.cursor().executescript(f.read())
         db.commit()
         db.close()
         print("Database and tables created successfully.")
