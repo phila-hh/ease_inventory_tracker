@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ease Inventory Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/landing_page.css') }}">
+</head>
+<body>
+
+<!-- Header Section -->
+<header>
+    <h1>Ease Inventory Tracker</h1>
+    <p>Your solution for effortless inventory management.</p>
+    <nav>
+        <a href="/signup">Sign Up</a>
+        <a href="/login">Log In</a>
+    </nav>
+</header>
+
+<!-- Feature Section -->
+<section id="features">
+    <div class="feature">
+        <img src="{{ url_for('static', filename='images/inventory_list_image.jpg') }}" alt="Inventory List">
+        <h2>Inventory List</h2>
+        <p>Easily view and manage your entire inventory in one comprehensive list.</p>
+    </div>
+
+    <div class="feature">
+        <img src="{{ url_for('static', filename='images/add_material_image.jpg') }}" alt="Add Material">
+        <h2>Add Material</h2>
+        <p>Seamlessly add new materials to your inventory with just a few clicks.</p>
+    </div>
+
+    <div class="feature">
+        <img src="{{ url_for('static', filename='images/update_material_image.jpg') }}" alt="Update Material">
+        <h2>Update Material</h2>
+        <p>Keep your inventory accurate by updating material details, including name, quantity, and price.</p>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about">
+    <h2>About Us</h2>
+    <p>This project was inspired by the need for a straightforward inventory management solution in various aspects of life. As part of the Holberton School curriculum, Ease Inventory Tracker represents the culmination of our dedication to practical, real-world problem-solving.</p>
+
+    <!-- Team Members -->
+    <div class="team-member">
+        <h3>Filimon Haftom</h3>
+        <div class="social-links">
+            <a href="https://github.com/phila-hh" target="https://github.com/phila-hh">GitHub</a>
+            <a href="https://twitter.com/phila_hh" target="https://twitter.com/phila_hh">Twitter</a>
+        </div>
+    </div>
+
+    <!-- Project Repository Link -->
+    <a href="https://github.com/phila-hh/ease_inventory_tracker" class="btn">Explore Repository</a>
+</section>
+
+</body>
+</html>
