@@ -48,9 +48,9 @@ def close_connection(exception):
 @app.route('/')
 def index():
     """
-    Renders the login page.
+    Renders the landing page.
     """
-    return render_template('login.html', value=None)
+    return render_template('landing_page.html', value=None)
 
 
 # Login route for handling user login
