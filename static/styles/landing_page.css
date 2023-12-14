@@ -1,0 +1,118 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5; /* Light gray background */
+    background: -webkit-linear-gradient(to right, #b326c853, #07495e);
+	background-image: linear-gradient(to right, #b326c853, #07495e);
+    color: #fffe2d;
+}
+
+header {
+    text-align: center;
+}
+
+header img {
+    width: 100%;
+    height: auto;
+}
+
+h1 {
+    margin: 20px 0;
+    color: #ff07a9;
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #555; /* Gray paragraph text */
+}
+
+nav {
+    margin-bottom: 20px;
+}
+
+nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #3498db; /* Blue navigation links */
+    font-weight: bold;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db; /* Blue button background */
+    color: #fff; /* White button text */
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+}
+
+/* Feature Section */
+#features {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 40px 0;
+}
+
+.feature {
+    text-align: center;
+    margin: 20px;
+    background-color: #fff; /* White background for features */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
+.feature img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+h2 {
+    margin: 10px 0;
+    color: #3498db; /* Blue feature headings */
+}
+
+/* About Section */
+#about {
+    background-color: #f9f9f9;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+h2 {
+    color: #333;
+}
+
+#about p {
+    margin: 20px 0;
+    color: #555;
+}
+
+.team-member {
+    margin: 20px 0;
+}
+
+.team-member img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.social-links a {
+    display: inline-block;
+    margin: 0 10px;
+    text-decoration: none;
+    color: #3498db; /* Blue social links */
+}
